@@ -4,35 +4,45 @@
     <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-system@1.4.0/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@4.0.0/dist/aframe-event-set-component.min.js"></script>
+    
+    <script src="script.js" charset="utf-8"></script>
   </head>
-  <body>
-    
-    
+  <body>   
     
     <a-scene>
+      <a-assets>
+      
+      </a-assets>
+      
       <!--Base Environment---------------------------------------------------------------------->  
-      <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
-      <a-plane position="0 0.1 -4" rotation="-89.9 0 0" width="2" height="4" color="#7BC8A4" static-body></a-plane><!--Ground-->
+      <a-entity raycaster="objects: .null" environment="preset: forest; dressingAmount: 500"></a-entity>
+      <a-plane raycaster="objects: .null" position="0 0.1 -4" rotation="-89.9 0 0" width="2" height="4" color="#7BC8A4" static-body></a-plane><!--Ground-->
       
       <!--Cursor and Movement------------------------------------------------------------------->
-      <a-entity camera look-controls wasd-controls="acceleration:100" position="0 1.6 0"></a-entity>
-      <a-entity id="camera" camera="userHeight: 1.6" look-controls cursor="rayOrigin: mouse"></a-entity>
+      <a-entity raycaster="objects: .collidable" camera look-controls wasd-controls="acceleration:100" position="0 1.6 0"></a-entity>
+      <a-entity id="camera" camera="1.6" look-controls cursor="rayOrigin: mouse"></a-entity>
       
       <!--Sign---------------------------------------------------------------------------------->      
-      <a-box position="0 2.23 -5" rotation="0 0 0" scale="1.3 0.7 0.2" color="#4CC3D9"></a-box> 
-      <a-cylinder position="0 0.75 -5" radius="0.5" height="1.5" scale="0.7 1.5 0.4" color="#FFC65D"></a-cylinder>
-      <a-entity  text="value: Hello World;" position="1.9 2.2 -4.9" scale="5 5 1"></a-entity>
+      <a-box raycaster="objects: .collidable" position="0 2.23 -5" rotation="0 0 0" scale="1.3 0.7 0.2" color="#4CC3D9"></a-box> 
+      <a-cylinder raycaster="objects: .collidable" position="0 0.75 -5" radius="0.5" height="1.5" scale="0.7 1.5 0.4" color="#FFC65D"></a-cylinder>
+      <a-text raycaster="objects: .collidable" text="value: Hello World;" position="2.1 2.2 -4.9" anchor="center" scale="1.1 1.1 1"></a-text>
       
       <!--Slide--------------------------------------------------------------------------------->  
-      <a-box position="0 0.9 -8" rotation="110 0 0" scale="1.3 8 0.2" color="#4CC3D9" static-body></a-box> <!--Ramp-->
-      <a-box position="0 0.35 -2" rotation="0 0 0" scale="2 0.9 0.1" color="#4CC3D9" static-body></a-box> <!--StopBlock-->
-            
+      <a-box raycaster="objects: .collidable" position="0 0.9 -8" rotation="110 0 0" scale="1.3 8 0.2" color="#4CC3D9" static-body></a-box> <!--Ramp-->
+      <a-box raycaster="objects: .collidable" position="0 0.35 -2" rotation="0 0 0" scale="2 0.9 0.1" color="#4CC3D9" static-body></a-box> <!--StopBlock-->
+          
       <a-sphere raycaster="objects: .collidable" position="0 5 -11" radius="0.7" color="#EF2D5E" dynamic-body
        event-set__enter="_event: mouseenter; color: #026fc9"
        event-set__leave="_event: mouseleave; color: #EF2D5E"
-       <a-animation begin="click" attribute="position" dur="2000" fill="forwards" to="0 5 -11" direction="alternate"></a-animation>
+       animation="property: position; startEvents: click; to: 0 5 -11; dur= 2000; easing: linear" 
        ></a-sphere> <!--Ball-->
-      
+       
+       
+       
+       <a-sphere position="3 1 -5" change-color-on-hover="color: blue">
+       <a-animation begin="click" attribute="position" from="0 0 0"
+                    to="0 0 -10" dur="2000" fill="both"></a-animation>
+     </a-sphere>
 
     </a-scene>
   </body>
