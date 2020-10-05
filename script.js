@@ -20,7 +20,7 @@ AFRAME.registerComponent('change-color-on-hover', {
       
       el.addEventListener('click', function (){
         console.log("click");
-        el.setAttribute('a-sphere', );
+        el.setAttribute('position', "0 5 -11");
       });
     }
   });
