@@ -1,6 +1,6 @@
 
 
-AFRAME.registerComponent('change-color-on-hover', {
+AFRAME.registerComponent('ball-reset', {
     schema: {
       color: {default: 'red'}
     },
